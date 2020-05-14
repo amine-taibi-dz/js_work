@@ -90,6 +90,7 @@ var f = function (str1) {
         return str1 + ' ' + str2;
     }
 }
+//tests
 var a = f('hello');
 var b = f('goodbye');
 console.log(a('Catty'));
