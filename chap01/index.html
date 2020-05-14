@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chap01_fullstack_js</title>
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make some space */
+      }
+      p {
+        color: #999999;
+      }
+      div#main {
+        padding-bottom: 2em;
+        padding-top: 3em;
+      }
+      .large {
+        font-size: 14pt;
+      }
+      body > div {
+        display: none;
+        display: block;
+      }
+      input[name="email"] {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" class="large">
+      Lorem ipsum dolor sit amet, Duis sit amet neque eu.
+    </div>
+    <font style="font-size: 20px;">Fonts...</font>
+    <form>
+      <input type="button" value="BTN" onclick="validateForm();" />
+      <input type="email" name="email" />
+    </form>
+    <a
+      onmousecdout="javascript: this.setAttribute('style','color:red')"
+      onmouseover="javascript: this.setAttribute('style','color:black')"
+      >test</a
+    >
+    <br />
+    <a title="Up-vote the answer">Voting</a>
+    <table style="border: 1px solid red;">
+      <thead style="background-color: burlywood; border: 1px solid red;">
+        <tr>
+          <td>
+            Name
+          </td>
+          <td>
+            Value
+          </td>
+        </tr>
+      </thead>
+      <tbody style="border: 1px solid red;">
+        <tr
+          style="background-color: bisque;"
+          data-token="fa10a70c-21ca-4e73-aaf5-d889c7263a0e"
+        >
+          <td>OK DATA</td>
+          <td>1500</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      function validateForm() {
+        console.log("validateForm");
+      }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+      //alert("Hello world!");
+      //simple alert dialog's browser window.
+    </script>
+    <script
+      src="js/app.js"
+      type="text/javascript"
+      language="javascript"
+    ></script>
+  </body>
+</html>
