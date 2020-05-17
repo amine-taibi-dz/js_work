@@ -1,1 +1,20 @@
 fullstack-javascript-master.zip
+libraries/city.list.json
+libraries/bootstrap-3.3.5-dist.zip
+libraries/bootstrap-4.0.0-dist.zip
+libraries/city.list.json.gz
+libraries/city.list.us.json.gz
+libraries/jquery-1.11.3.js
+libraries/jquery-2.1.4.js
+libraries/parse-1.5.0.tgz
+libraries/parse-1.11.1.js
+libraries/backbone-1.2.3/backbone.js
+libraries/package/package.json
+libraries/package/build/parse-latest.js
+libraries/underscore-1.8.3/underscore.js
+testssl/cert.pem
+testssl/key.pem
+webserver/cert copy.pem
+webserver/cert.pem
+webserver/key copy.pem
+webserver/key.pem
