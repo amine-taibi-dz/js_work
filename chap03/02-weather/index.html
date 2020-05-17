@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		.row {
+			padding-top:1.5em;
+		}
+	</style>
+	<script>
+		var openWeatherAppId = 'fee4f2cccd3efe36bc74ea46abe40c5d',
+          openWeatherUrl = 'http://api.openweathermap.org/data/2.5/forecast';
+//   http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
+
+          
+/*var oneCall = "https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,daily&appid=fee4f2cccd3efe36bc74ea46abe40c5d";*/
+var oneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=36.732928&lon=3.0408704&exclude=hourly,daily&appid=fee4f2cccd3efe36bc74ea46abe40c5d";
+    // latitude: 36.732928 longitude: 3.0408703999999998
+		var prepareData = function(units) {
+			// Replace loading image
+			var cityName = $('#city-name').val()
+			// Make ajax call, callback
+			if (cityName && cityName != ''){
+				cityName = cityName.trim();
+                //getData(openWeatherUrl, cityName, openWeatherAppId, units);
+                getData(oneCall, cityName, /*openWeatherAppId,*/ units);
+			}
+			else {
+				alert('Please enter the city name')
+			}
+		}
+		$(document).ready(function(){
+			$('.btn-metric').click(function() {
+				prepareData('metric');
+			})
+			$('.btn-imperial').click(function() {
+				prepareData('imperial');
+			})
+        })
+        
+		function getData (url, cityName, appId, units) {
+			var request = $.ajax({
+				url: url,
+                dataType: "jsonp",
+                //dataType: "application/json",
+				data: {name: cityName/*, appid: appId*/, units: units},
+				jsonpCallback: "fetchData",
+				type: "GET"
+			}).fail(function(error){
+                console.error(error);
+                console.error(error.responseText);
+				alert('Error sending request');
+			})
+        }
+        /*
+        {"lat":36.73,"lon":3.04,"timezone":"Africa/Algiers",
+        "current":{"dt":1589726518,"sunrise":1589690325,"sunset":1589741398,"temp":293.15,"feels_like":291.09,"pressure":1018,"humidity":77,"dew_point":289,"uvi":7.89,"clouds":75,"visibility":10000,"wind_speed":5.7,"wind_deg":20,
+        "weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}]}}
+        */
+		function fetchData (forecast) {
+			console.log(forecast)
+			var html = '',
+			  temp = forecast.current.temp -273.15,
+				country = forecast.timezone;
+
+			html += '<h3> Weather tem ' + temp + ', ' + country + '</h3>'
+			/*forecast.list.forEach(function(forecastEntry, index, list){
+				html += '<p>' + forecastEntry.dt_txt + ': ' + forecastEntry.main.temp + '</p>'
+			})*/
+			$('#log').html(html)
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+
+		<div class="row">
+			<div class="span4 offset 3">
+				<h2>Weather App</h2>
+				<p>Enter city name to get the weather forecast</p>
+			</div>
+			<div class="span6  offset1"><input class="span4" type="text" placeholder="Enter the city name" id="city-name" value=""/>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="span6 offset1"><input type="button" class="btn-primary btn btn-metric" value="Get forecast in metric"/>
+			<div class="span6 offset1"><input type="button" class="btn-danger btn btn-imperial" value="Get forecast in imperial"/>
+			</div>			
+		</div>
+
+		<div class="row">
+			<div class="span6 offset1">
+				<div id="log">Nothing to show yet</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<hr/>
+			<p>Azat Mardan (<a href="http://twitter.com/azat_co">@azat_co</a>)</p>
+		</div>
+
+	</div>
+
+</body>
+</html>
