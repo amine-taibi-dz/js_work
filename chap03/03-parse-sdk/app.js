@@ -4,6 +4,9 @@ $(document).ready(function () {
   const parseApplicationId = 'myApp123';
   const parseJavaScriptKey = 'jsApp123';
   /*
+  git remote add origin1 https://github.com/amine-taibi-dz/js_work.git
+git push -u origin1 master
+   git remote add
     curl -X POST \
     -H "X-Parse-Application-Id: myApp123" \
     -H "Content-Type: application/json" \
