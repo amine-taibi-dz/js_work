@@ -1,0 +1,14 @@
+ .content {
+     font-size: 2em;
+     width: 300px;
+     height: 300px;
+     padding: 5px;
+     margin: 5px;
+     border: blue 3px dashed;
+     border-radius: 5px;
+     background-color: bisque;
+     color: crimson;
+     text-transform: capitalize;
+     text-align: center;
+
+ }

@@ -1,0 +1,1 @@
+define(["apple-item.tpl"],function(t){return Backbone.View.extend({tagName:"li",template:_.template(t),events:{"click .add-to-cart":"addToCart"},render:function(){this.$el.html(this.template(this.model.attributes))},addToCart:function(){this.model.collection.trigger("addToCart",this.model)}})});

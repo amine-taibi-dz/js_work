@@ -1,0 +1,94 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <link rel="stylesheet" href="in.css" />
+    <link rel="shortcut icon" href="#" />
+    <script src="jquery-3.5.1.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+    <script>
+      // TODO write some awesome JS code!
+      var appleData = [
+        {
+          name: "fuji",
+          url: "img/fuji.jpg",
+        },
+        {
+          name: "gala",
+          url: "img/gala.jpg",
+        },
+      ];
+      var app;
+      var Router = Backbone.Router.extend({
+        routes: {
+          "": "home",
+          "apples/:appleName": "loadApple",
+        },
+        initialize: function () {
+          var apples = new Apples();
+          apples.reset(appleData);
+          this.homeView = new homeView({ collection: apples });
+          this.appleView = new appleView({ collection: apples });
+        },
+        home: function () {
+          //this.homeView = new homeView();
+          this.homeView.render();
+        },
+        loadApple: function (appleName) {
+          this.appleView.loadApple(appleName);
+        },
+      });
+      var Apples = Backbone.Collection.extend({});
+      var appleView = Backbone.View.extend({
+        initialize: function () {
+          // TODO: create and setup model (aka an apple)
+          this.model = new (Backbone.Model.extend({}))();
+          this.model.bind("change", this.render, this);
+          this.bind("spinner", this.showSpinner, this);
+        },
+        template: _.template(
+          `<figure> <img src="<%= attributes.url%>"/>
+                   <figcaption> <%= attributes.name %></figcaption>
+          </figure>`
+        ),
+        templateSpinner: '<img src="img/spinner.gif" width="30"/>',
+        loadApple: function (appleName) {
+          this.trigger("spinner");
+          var view = this;
+          setTimeout(function () {
+            view.model.set(
+              view.collection.where({ name: appleName })[0].attributes
+            );
+          }, 1000);
+        },
+        render: function (appleName) {
+          //var appleModel = this.collection.where({ name: appleName })[0];
+          //var appleHtml = this.template(appleModel);
+          var appleHtml = this.template(this.model);
+          $(".content").html(appleHtml);
+        },
+        showSpinner: function () {
+          $(".content").html(this.templateSpinner);
+        },
+      });
+      var homeView = Backbone.View.extend({
+        el: ".content",
+        template: _.template("Apple data: <%= data %>"),
+        render: function () {
+          this.$el.html(
+            this.template({ data: JSON.stringify(this.collection.models) })
+          );
+        },
+        // TODO subviews
+      });
+
+      $(document).ready(function () {
+        app = new Router();
+        Backbone.history.start();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="content"></div>
+  </body>
+</html>

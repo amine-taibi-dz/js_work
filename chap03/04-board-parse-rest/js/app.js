@@ -36,7 +36,6 @@ $(document).ready(function () {
 				$sendButton.html('SEND')
 			}
 		})
-
 	})
 })
 function getMessages() {

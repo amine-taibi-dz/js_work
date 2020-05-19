@@ -1,0 +1,31 @@
+var appleView = Backbone.View.extend({
+    initialize: function () {
+        this.model = new (Backbone.Model.extend({}))
+        this.model.on('change', this.render, this)
+        this.on('spinner', this.showSpinner, this)
+    },
+    template: _.template('<figure>\
+<img src="<%= attributes.url %>"/>\
+<figcaption><%= attributes.name %></figcaption>\
+</figure>'),
+    templateSpinner: '<img src="img/spinner.gif" width="30"/>',
+    loadApple: function (appleName) {
+        this.trigger('spinner')
+        var view = this
+        // We'll need to access that inside of a closure
+        setTimeout(function () {
+            // Simulates real time lag when
+            // fetching data from the remote server
+            view.model.set(view.collection.where({
+                name: appleName
+            })[0].attributes)
+        }, 1000)
+    },
+    render: function (appleName) {
+        var appleHtml = this.template(this.model)
+        $('.content').html(appleHtml)
+    },
+    showSpinner: function () {
+        $('.content').html(this.templateSpinner)
+    }
+})
