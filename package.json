@@ -1,0 +1,12 @@
+{
+  "name": "fullstack-javascript",
+  "version": "1.0.0",
+  "description": "reading & testing book fullstack js azat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ATA <ataibi@gmail.com>",
+  "license": "MIT"
+}
