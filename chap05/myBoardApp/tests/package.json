@@ -1,0 +1,16 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ATA <ataibi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "parse": "^2.13.0",
+    "parsebone": "^0.2.0"
+  }
+}
